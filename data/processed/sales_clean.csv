@@ -1,0 +1,27 @@
+2026-09-27T16:14:22.233874777Z main WARN The use of package scanning to locate Log4j plugins is deprecated.
+2026-09-27T16:14:22.574737396Z main INFO Starting configuration org.apache.logging.log4j.core.config.properties.PropertiesConfiguration@6e005dc9...
+2026-09-27T16:14:22.575165159Z main INFO Start watching for changes to jar:file:/home/sri_durga99/hive-4.1.0/lib/hive-beeline-4.1.0.jar!/beeline-log4j2.properties every 0 seconds
+2026-09-27T16:14:22.575491038Z main INFO Configuration org.apache.logging.log4j.core.config.properties.PropertiesConfiguration@6e005dc9 started.
+2026-09-27T16:14:22.584234835Z main INFO Stopping configuration org.apache.logging.log4j.core.config.DefaultConfiguration@2fd1433e...
+2026-09-27T16:14:22.585095921Z main INFO Configuration org.apache.logging.log4j.core.config.DefaultConfiguration@2fd1433e stopped.
+sale_date,product_id,quantity
+2026-01-01,P101,42
+2026-01-01,P102,20
+2026-01-02,P101,38
+2026-01-02,P102,25
+2026-01-03,P101,51
+2026-01-03,P102,18
+2026-01-04,P101,47
+2026-01-04,P102,22
+2026-01-05,P101,55
+2026-01-05,P102,27
+2026-01-06,P101,61
+2026-01-06,P102,30
+2026-01-07,P101,58
+2026-01-07,P102,28
+2026-01-08,P101,65
+2026-01-08,P102,32
+2026-01-09,P101,63
+2026-01-09,P102,35
+2026-01-10,P101,70
+2026-01-10,P102,31
