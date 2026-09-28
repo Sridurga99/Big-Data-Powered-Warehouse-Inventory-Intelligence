@@ -1,0 +1,3 @@
+product_id,warehouse,supplier_id,lead_time_days,average_daily_demand,maximum_forecast_demand,demand_std,current_stock,lead_time_demand,safety_stock,reorder_point,days_of_inventory,recommended_order,inventory_status
+P101,W01,S01,7,63.84,63.92,0.1,120,446.9,0.42,447.32,1.88,327.32,Critical
+P102,W01,S02,3,34.02,34.22,0.14,450,102.06,0.4,102.46,13.23,0.0,Sufficient
