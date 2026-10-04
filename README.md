@@ -1,241 +1,486 @@
-# Big Data Powered Warehouse Inventory Intelligence
+📦 Big Data Powered Warehouse Inventory Intelligence
 
-A Big Data-based warehouse inventory system that uses Hadoop and Hive for large-scale data processing and provides processed data for demand forecasting and inventory intelligence.
+Demand Forecasting • Inventory Risk Analysis • Smart Replenishment • Business Intelligence
 
-## Project Overview
+An end-to-end Big Data and Machine Learning powered warehouse inventory intelligence system designed to help warehouses monitor stock levels, forecast future demand, identify inventory risks, and generate intelligent reorder recommendations.
 
-The system processes warehouse sales, inventory, product, supplier, warehouse, and external-event data through a Big Data pipeline.
+The system combines Hadoop, MapReduce, Hive, Python, Machine Learning, Node.js, React, and Power BI into a unified warehouse analytics platform.
 
-The complete project integrates:
+---
+
+🎯 Project Overview
+
+Traditional inventory management systems often rely on historical stock information and manual reorder decisions. This can lead to:
+
+- Overstocking
+- Stock shortages
+- Poor demand planning
+- Delayed replenishment
+- Increased holding costs
+- Difficulty identifying high-risk products
+
+This project addresses these challenges by processing large-scale warehouse data and combining Big Data processing, demand forecasting, inventory optimization, and interactive analytics.
+
+The system transforms raw sales and inventory data into actionable insights such as:
+
+«What is selling? → What will be needed? → What is at risk? → What should be reordered?»
+
+---
+
+✨ Key Features
+
+📊 Big Data Processing
+
+- HDFS-based distributed data storage
+- MapReduce-based sales aggregation
+- Hive-based data analysis
+- YARN-supported Hadoop ecosystem
+- Large-scale warehouse dataset processing
+
+🔮 Demand Forecasting
+
+- Historical sales preprocessing
+- Product-level demand analysis
+- Machine Learning based forecasting
+- Average daily demand calculation
+- Maximum forecast demand estimation
+- Demand variability analysis
+
+⚠️ Inventory Risk Intelligence
+
+- Inventory Risk Score
+- High / Medium / Low risk classification
+- Current stock monitoring
+- Reorder point calculation
+- Days of inventory analysis
+- Identification of products requiring attention
+
+🔄 Smart Replenishment
+
+The system generates recommended order quantities based on:
+
+- Forecasted demand
+- Current inventory
+- Supplier lead time
+- Demand variability
+- Safety stock requirements
+
+📈 Power BI Analytics
+
+Interactive dashboards provide:
+
+- Executive inventory overview
+- Inventory intelligence
+- Demand & forecasting analysis
+- Warehouse/product analysis
+- Risk distribution
+- Product-level insights
+- Inventory status analysis
+
+🖥️ Interactive Warehouse Web Application
+
+The frontend provides:
+
+- Inventory Command Center
+- Product management
+- Demand forecasting
+- Smart recommendations
+- Risk analysis
+- Warehouse-themed animations
+- Interactive navigation
+- Power BI dashboard integration
+
+---
+
+🏗️ System Architecture
+
+                    ┌───────────────────────┐
+                    │   Warehouse Dataset   │
+                    │ Sales / Inventory /   │
+                    │ Products / Suppliers │
+                    └───────────┬───────────┘
+                                │
+                                ▼
+                    ┌───────────────────────┐
+                    │         HDFS          │
+                    │ Distributed Storage   │
+                    └───────────┬───────────┘
+                                │
+                                ▼
+                    ┌───────────────────────┐
+                    │      MapReduce        │
+                    │ Sales Aggregation     │
+                    └───────────┬───────────┘
+                                │
+                                ▼
+                    ┌───────────────────────┐
+                    │         Hive          │
+                    │ Data Analysis / SQL   │
+                    └───────────┬───────────┘
+                                │
+                                ▼
+                    ┌───────────────────────┐
+                    │ Python + ML Pipeline  │
+                    │ Preprocessing         │
+                    │ Demand Forecasting    │
+                    │ Inventory Optimization│
+                    └───────────┬───────────┘
+                                │
+                 ┌──────────────┴──────────────┐
+                 ▼                             ▼
+       ┌──────────────────┐          ┌──────────────────┐
+       │ Node.js Backend  │          │    Power BI      │
+       │ REST API + DB    │          │ Interactive      │
+       │                  │          │ Dashboards       │
+       └────────┬─────────┘          └──────────────────┘
+                │
+                ▼
+       ┌──────────────────┐
+       │ React Frontend   │
+       │ Warehouse UI     │
+       └──────────────────┘
+
+---
+
+🧠 Inventory Intelligence
+
+The system calculates important inventory indicators.
+
+Safety Stock
+
+Safety Stock = Demand Standard Deviation × √Lead Time
+
+Reorder Point
+
+Reorder Point = Lead Time Demand + Safety Stock
+
+Risk Classification
+
+Risk Score| Category
+≥ 70| 🔴 High Risk
+40–69| 🟠 Medium Risk
+< 40| 🟢 Low Risk
+
+These indicators help determine which products require immediate attention.
+
+---
+
+🔮 Demand Forecasting Pipeline
+
+Raw Sales Data
+      ↓
+Data Cleaning
+      ↓
+Feature Preparation
+      ↓
+Historical Demand Analysis
+      ↓
+Machine Learning Model
+      ↓
+Demand Forecast
+      ↓
+Inventory Optimization
+      ↓
+Reorder Recommendation
+
+Generated outputs include:
+
+processed_sales.csv
+forecasted_sales.csv
+inventory_recommendations.csv
+
+---
+
+📊 Power BI Dashboard
+
+The project includes four major Power BI dashboard areas.
+
+1. Executive Dashboard
+
+Provides a high-level view of:
+
+- Total Products
+- High Risk Products
+- Total Recommended Order
+- Average Risk Score
+- Risk Category Distribution
+- Inventory Status
+
+2. Inventory Intelligence
+
+Provides:
+
+- Current Stock by Product
+- Current Stock vs Reorder Point
+- Recommended Order by Product
+- Days of Inventory
+- Inventory Status
+
+3. Demand & Forecasting
+
+Provides:
+
+- Average Daily Demand
+- Maximum Forecast Demand
+- Demand Standard Deviation
+- Daily Demand by Product
+- Average Demand vs Maximum Forecast
+
+4. Warehouse & Product Analysis
+
+Provides:
+
+- Products by Warehouse
+- Products by Category
+- Risk Score by Product
+- Unit Price by Product
+- Unit Price vs Current Stock
+- Current Stock by Category
+- Risk Category by Warehouse
+
+---
+
+🖥️ Web Application Modules
+
+Module| Purpose
+🏠 Dashboard| Overall warehouse command center
+📦 Inventory| Product and stock management
+🔮 Forecast| Demand forecasting insights
+🔄 Recommendations| Smart replenishment suggestions
+⚠️ Risk Analysis| Inventory risk monitoring
+📊 Power BI| Interactive business intelligence
+
+---
+
+🛠️ Technology Stack
+
+Big Data
 
 - Hadoop HDFS
 - Hadoop MapReduce
-- Hive
+- Apache Hive
+- YARN
+
+Data & Machine Learning
+
 - Python
-- Machine Learning / Demand Forecasting
-- Inventory Intelligence
+- Pandas
+- NumPy
+- Scikit-learn
+- Jupyter Notebook
+
+Backend
+
+- Node.js
+- Express.js
+- REST API
+- SQLite
+- better-sqlite3
+
+Frontend
+
+- React
+- Vite
+- JavaScript
+- CSS
+
+Visualization & BI
+
 - Power BI
 
-## System Architecture
+Development Tools
 
-```text
-Raw Warehouse Data
-        |
-        v
-     HDFS
-        |
-        v
-   MapReduce
-        |
-        v
-      Hive
-        |
-        v
-Processed Data
-        |
-        v
-Demand Forecasting
-        |
-        v
-Inventory Intelligence
-        |
-        v
-Power BI Dashboard
+- VS Code
+- Git
+- GitHub
+- WSL2 / Ubuntu
 
-## Big Data Module
+---
 
-The Big Data and Data Engineering module is responsible for:
+📁 Project Structure
 
-1. Preparing warehouse datasets
-2. Storing datasets in Hadoop HDFS
-3. Processing sales data using MapReduce
-4. Creating Hive external tables
-5. Performing Hive-based aggregation and joins
-6. Producing clean datasets for the downstream ML module
+Big-Data-Powered-Warehouse-Inventory-Intelligence/
+│
+├── backend/
+│   ├── server.js
+│   ├── migrate_ml_data.js
+│   ├── sync_ml_to_db.js
+│   ├── package.json
+│   └── warehouse.db
+│
+├── data/
+│   ├── sales.csv
+│   ├── inventory.csv
+│   ├── products.csv
+│   ├── suppliers.csv
+│   ├── external_events.csv
+│   └── processed/
+│
+├── frontend/
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       └── pages/
+│
+├── hadoop/
+│
+├── ml/
+│   ├── preprocessing.py
+│   └── output/
+│
+├── scripts/
+│   └── generate_dataset.py
+│
+├── docs/
+│
+└── README.md
 
-## Datasets
+---
 
-The project contains:
+⚙️ Getting Started
 
-- `sales.csv`
-- `inventory.csv`
-- `products.csv`
-- `suppliers.csv`
-- `warehouses.csv`
-- `external_events.csv`
+1. Clone the Repository
 
-## MapReduce
+git clone <repository-url>
+cd Big-Data-Powered-Warehouse-Inventory-Intelligence
 
-The MapReduce pipeline calculates total sales quantity for each product.
+2. Install Backend Dependencies
 
-Verified result:
+cd backend
+npm install
 
-| Product ID | Product Name | Total Quantity |
-|------------|--------------|----------------|
-| P101 | Smartphone | 550 |
-| P102 | Rice_Bag | 268 |
+3. Start the Backend
 
-## Processed Data
+node server.js
 
-The Big Data pipeline produces:
+The backend runs on:
 
-- `sales_clean.csv` — daily sales data for demand forecasting
-- `sales_by_product.csv` — product-level aggregated sales
-- `sales_by_product.txt` — Hadoop MapReduce output
+http://localhost:5000
 
-## Hive
+4. Install Frontend Dependencies
 
-Hive external tables are created for:
+Open another terminal:
+
+cd frontend
+npm install
+
+5. Start the Frontend
+
+npm run dev
+
+The Vite development server will provide the local frontend URL.
+
+---
+
+🔗 Backend API
+
+The application uses REST APIs to connect the frontend with warehouse data.
+
+Example inventory endpoint:
+
+/api/powerbi/inventory
+
+The backend provides product and inventory information required by the web application and analytics layer.
+
+---
+
+📦 Dataset
+
+The project uses warehouse-related datasets containing information about:
 
 - Sales
-- Inventory
 - Products
+- Inventory
 - Suppliers
-- Warehouses
-- External Events
+- External events
+- Demand-related information
 
-Hive is used to query, join, and aggregate the warehouse datasets.
+The expanded dataset is designed to provide a more realistic Big Data processing environment for warehouse intelligence and forecasting.
 
-## Downstream Inventory Intelligence
+---
 
-The processed data is passed to the ML module for:
+💡 Project Novelty
 
-- Demand forecasting
-- Dynamic safety stock
-- Supplier lead-time analysis
-- Reorder point calculation
-- Inventory risk scoring
-- Reorder recommendations
+The key contribution of this project is the integration of multiple decision-making components into a single warehouse intelligence platform.
 
-## Machine Learning & Inventory Intelligence Module
+Instead of simply displaying inventory levels, the system connects:
 
-The Machine Learning and Inventory Intelligence module is responsible for:
+Historical Sales
+      +
+Demand Forecast
+      +
+Demand Variability
+      +
+Supplier Lead Time
+      +
+Current Stock
+      ↓
+Inventory Risk
+      +
+Reorder Recommendation
 
-1. Preparing the processed sales data for machine learning
-2. Cleaning and transforming daily sales data
-3. Performing demand forecasting using Random Forest
-4. Generating short-term product-level demand forecasts
-5. Calculating supplier lead-time demand
-6. Calculating safety stock and reorder points
-7. Generating recommended order quantities
-8. Classifying inventory status
-9. Performing inventory risk analysis
-10. Producing final inventory intelligence data for Power BI
+This allows the system to move from descriptive analytics toward predictive and decision-support analytics.
 
-## Demand Forecasting
+---
 
-The demand forecasting module uses historical product-level sales data
-to predict future demand.
+🎯 Expected Benefits
 
-The forecasting pipeline uses:
+The system can help warehouse managers:
 
-- Lag-based demand features
-- Rolling average features
-- Calendar-based features
-- Random Forest Regression
+- Identify products at risk
+- Anticipate future demand
+- Reduce stockout possibilities
+- Avoid unnecessary overstocking
+- Prioritize replenishment
+- Understand product-level inventory behavior
+- Make data-driven inventory decisions
 
-The model generates a 7-day demand forecast for each product.
+---
 
-Output:
+🚀 Future Scope
 
-- `forecast.csv`
+Possible future enhancements include:
 
-## Inventory Optimization
+- Real-time IoT-based inventory monitoring
+- Barcode/RFID integration
+- More advanced time-series forecasting
+- Automated supplier selection
+- Dynamic pricing intelligence
+- Automated purchase-order generation
+- Cloud deployment
+- Real-time streaming with Kafka
+- Advanced anomaly detection
+- Mobile warehouse management application
 
-The inventory optimization module combines demand forecasts with current
-inventory and supplier lead-time information.
+---
 
-It calculates:
+👥 Team
 
-- Average daily demand
-- Maximum forecast demand
-- Demand standard deviation
-- Lead-time demand
-- Safety stock
-- Reorder point
-- Days of inventory
-- Recommended order quantity
+Project: Big Data Powered Warehouse Inventory Intelligence using Demand Forecasting
 
-Inventory status is classified as:
+Team Size: 3 Members
 
-- Critical
-- Reorder Required
-- Sufficient
+Developed as an academic Big Data and Machine Learning project.
 
-Output:
+---
 
-- `inventory_optimization.csv`
+📌 Project Status
 
-## Inventory Risk Analysis
+Big Data Processing        ✅ Complete
+Machine Learning           ✅ Complete
+Demand Forecasting         ✅ Complete
+Inventory Optimization     ✅ Complete
+Risk Analysis              ✅ Complete
+Smart Recommendations      ✅ Complete
+React Web Application      ✅ Complete
+Power BI Dashboard         ✅ Complete
+Dataset Enhancement        ✅ Complete
+GitHub Repository          ✅ Complete
 
-The inventory risk module evaluates product inventory coverage and
-identifies potential stock shortage risks.
+🏆 Overall Development Status: 100% Complete
 
-It calculates:
+---
 
-- Stock coverage ratio
-- Risk score
-- Risk category
+📜 License
 
-Risk categories include:
-
-- High Risk
-- Medium Risk
-- Low Risk
-
-Output:
-
-- `final_inventory_intelligence.csv`
-
-## ML Output
-
-The ML module produces:
-
-- `clean_sales.csv` — cleaned daily sales data
-- `forecast.csv` — product demand forecasts
-- `inventory_optimization.csv` — inventory optimization results
-- `final_inventory_intelligence.csv` — final inventory intelligence data
-
-The final output is passed to the Power BI module for visualization
-and dashboard development.
-
-## Repository Structure
-
-```text
-data/
-├── raw datasets
-└── processed/
-
-hadoop/
-├── mapreduce/
-│   ├── mapper.py
-│   └── reducer.py
-└── hive/
-    ├── create_tables.hql
-    └── analysis_queries.hql
-ml/
-├── preprocessing.py
-├── forecasting.py
-├── inventory_optimization.py
-├── risk_analysis.py
-└── output/
-    ├── clean_sales.csv
-    ├── forecast.csv
-    ├── inventory_optimization.csv
-    └── final_inventory_intelligence.csv
-
-scripts/
-└── run_mapreduce.sh
-
-docs/
-└── architecture.md
-
-## Team Module
-
-This repository integrates three major project modules:
-
-- Big Data and Data Engineering
-- ML and Inventory Intelligence
-- Power BI and Visualization
-
-The Big Data module provides the processed foundation for the downstream forecasting and inventory intelligence components.
+This project was developed for academic and educational purposes.
