@@ -1,0 +1,7 @@
+product_id,product_name,category,unit_price
+P101,Smartphone,Electronics,2500
+P102,Rice_Bag,Grocery,450
+P103,Cooking_Oil,Grocery,180
+P104,Sugar,Grocery,55
+P105,Laptop,Electronics,55000
+P106,Headphones,Electronics,1800
