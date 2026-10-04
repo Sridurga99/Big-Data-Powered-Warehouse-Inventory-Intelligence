@@ -295,10 +295,9 @@ Development Tools
 - GitHub
 - WSL2 / Ubuntu
 
----
+## 📁 Project Structure
 
-📁 Project Structure
-
+```text
 Big-Data-Powered-Warehouse-Inventory-Intelligence/
 │
 ├── backend/
@@ -334,8 +333,6 @@ Big-Data-Powered-Warehouse-Inventory-Intelligence/
 ├── docs/
 │
 └── README.md
-
----
 
 ⚙️ Getting Started
 
