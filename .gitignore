@@ -11,3 +11,7 @@ dist/
 build/
 .vscode/
 .DS_Store
+*_backup_*.js
+*_backup_*.py
+data/processed/spark_sales/**/*.crc
+data/processed/spark_sales/**/_SUCCESS
