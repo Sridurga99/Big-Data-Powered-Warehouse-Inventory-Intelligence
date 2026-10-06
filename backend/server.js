@@ -1,3 +1,55 @@
+require("dotenv").config()
+
+const { createClient } = require("@supabase/supabase-js")
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_KEY
+)
+async function syncProductToSupabase(product) {
+  const data = {
+    product_id: product.product_id,
+    product_name: product.product_name,
+    category: product.category || "",
+    warehouse: product.warehouse || "",
+    current_stock: Number(product.current_stock || 0),
+    reorder_point: Number(product.reorder_point || 0),
+    recommended_order: Number(product.recommended_order || 0),
+    average_daily_demand: Number(
+      product.average_daily_demand || 0
+    ),
+    maximum_forecast_demand: Number(
+      product.maximum_forecast_demand || 0
+    ),
+    demand_std: Number(product.demand_std || 0),
+    days_of_inventory: Number(product.days_of_inventory || 0),
+    risk_score: Number(product.risk_score || 0),
+    risk_category: product.risk_category || "",
+    inventory_status: product.inventory_status || "",
+    unit_price: Number(product.unit_price || 0)
+  }
+
+  const { error } = await supabase
+    .from("inventory_intelligence")
+    .upsert(data, {
+      onConflict: "product_id"
+    })
+
+  if (error) {
+    throw error
+  }
+}
+
+async function deleteProductFromSupabase(productId) {
+  const { error } = await supabase
+    .from("inventory_intelligence")
+    .delete()
+    .eq("product_id", productId)
+
+  if (error) {
+    throw error
+  }
+}
 const express = require("express")
 const cors = require("cors")
 const Database = require("better-sqlite3")
@@ -347,7 +399,7 @@ app.put("/api/products/:id", (req, res) => {
 
 app.post(
   "/api/products/:id/receive",
-  (req, res) => {
+ async  (req, res) => {
     try {
       const product = getProduct(req.params.id)
 
@@ -418,7 +470,8 @@ app.post(
       })
 
       transaction()
-
+      const updatedProduct = getProduct(req.params.id)
+      await syncProductToSupabase(updatedProduct)
       res.json({
         message: "Stock received successfully",
         received_quantity: quantity,
@@ -458,7 +511,7 @@ app.get(
   }
 )
 
-app.delete("/api/products/:id", (req, res) => {
+app.delete("/api/products/:id", async (req, res) => {
   const product = getProduct(req.params.id)
 
   if (!product) {
@@ -474,6 +527,7 @@ app.delete("/api/products/:id", (req, res) => {
   db.prepare(
     "DELETE FROM products WHERE product_id = ?"
   ).run(req.params.id)
+  await deleteProductFromSupabase(req.params.id)
 
   res.json({
     message: "Product deleted successfully"

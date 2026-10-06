@@ -27,6 +27,12 @@ SUPPLIER_FILE = (
     "suppliers.csv"
 )
 
+SPARK_DEMAND_FILE = (
+    ML_DIR /
+    "output" /
+    "spark_demand_statistics.csv"
+)
+
 # Output folder
 OUTPUT_DIR = ML_DIR / "output"
 
@@ -85,10 +91,27 @@ def load_data():
         f"Supplier rows: {len(suppliers)}"
     )
 
+    print("\nLoading Spark demand statistics...")
+
+    if not SPARK_DEMAND_FILE.exists():
+        raise FileNotFoundError(
+            f"Spark demand file not found:\n{SPARK_DEMAND_FILE}\n\n"
+            "Please run integrate_spark_demand.py first."
+        )
+
+    spark_demand = pd.read_csv(
+        SPARK_DEMAND_FILE
+    )
+
+    print(
+        f"Spark demand rows: {len(spark_demand)}"
+    )
+
     return (
         forecast,
         inventory,
-        suppliers
+        suppliers,
+        spark_demand
     )
 
 
@@ -169,7 +192,8 @@ def calculate_safety_stock(
 def calculate_inventory_metrics(
     forecast,
     inventory,
-    suppliers
+    suppliers,
+    spark_demand
 ):
 
     results = []
@@ -192,12 +216,35 @@ def calculate_inventory_metrics(
         # -------------------------------------------------
 
         (
-            average_daily_demand,
+            _,
             maximum_daily_demand,
-            demand_std
+            _
         ) = calculate_demand_statistics(
             forecast,
             product_id
+        )
+
+        spark_row = spark_demand[
+            spark_demand["product_id"] == product_id
+        ]
+
+        if spark_row.empty:
+            print(
+                f"Warning: Spark demand not found "
+                f"for {product_id}"
+            )
+            continue
+
+        average_daily_demand = float(
+            spark_row[
+                "average_daily_demand"
+            ].iloc[0]
+        )
+
+        demand_std = float(
+            spark_row[
+                "demand_std"
+            ].iloc[0]
         )
 
         # -------------------------------------------------
@@ -450,7 +497,8 @@ def main():
     (
         forecast,
         inventory,
-        suppliers
+        suppliers,
+        spark_demand
     ) = load_data()
 
     # -----------------------------------------------------
@@ -460,7 +508,8 @@ def main():
     result = calculate_inventory_metrics(
         forecast,
         inventory,
-        suppliers
+        suppliers,
+        spark_demand
     )
 
     # -----------------------------------------------------
